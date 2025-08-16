@@ -1,50 +1,104 @@
-# Welcome to your Expo app 👋
+# App Name
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Table of Contents
 
-## Get started
+- [Description](#description)
+- [Installation Instructions](#installation-instructions)
+- [Usage and Screenshots](#usage-and-screenshots)
+- [Technologies Used](#technologies-used)
+- [Dependencies and Credits](#dependencies-and-credits)
+- [Project Structure](#project-structure)
 
-1. Install dependencies
+## Description
 
-   ```bash
-   npm install
+Write a paragraph or two describing the project here.
+
+## Installation Instructions
+
+1. Fork this repo
+1. In your copy of the repo click the green **Code** button and copy the URL
+1. If you don't have an Expo account [sign up](https://expo.dev/signup) for one
+1. Open your IDE
+1. ```bash
+   cd YOUR_DIRECTORY_FOR_THIS_APP
    ```
-
-2. Start the app
-
-   ```bash
+1. ```bash
+   git clone COPIED_URL
+   ```
+1. Run the following in your terminal
+   - ```bash
+     npm init -y
+     npm install
+     ```
+    - ```bash 
+      eas login
+      ```
+1. ```bash  react native
    npx expo start
    ```
+   - If there are [issues](https://docs.expo.dev/get-started/start-developing/#having-problems) run `npx expo start --tunnel` instead
+   - `^` + `c` will end the process
 
-In the output, you'll find options to open the app in a
+## Usage and Screenshots
+<!--
+<img src="./public/screenshot.png" alt="screenshot" style="height: 50vh; width: auto;">
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Here's a brief description of how to use the app.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- [Link to live preview](https://groundedwanderer.dev/)
+- [Link to backend repo](https://github.com/aRav3n/odin-book-backend)
 
-## Get a fresh project
+### Features
+- Feature one
+- Feature two
+-->
 
-When you're ready, run:
+## Technologies Used
+
+- <a href="https://expo.dev"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/expo/expo-original.svg" style="height: 2rem; width: auto; vertical-align: middle;"> Expo </a>
+- <a href="https://reactnative.dev/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" style="height: 2rem; width: auto;"> React Native</a>
+- <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" style="height: 2rem; width: auto;"> JavaScript</a>
+- <a href="https://www.typescriptlang.org/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" style="height: 2rem; width: auto;"/> TypeScript</a>
+
+### Development Tools
+
+- <a href="https://code.visualstudio.com/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" style="height: 24px; width: auto;"/> VS Code</a>
+- <a href="https://www.npmjs.com/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/npm/npm-original.svg" style="height: 24px; width: auto;"/> NPM</a>
+- <a href="https://git-scm.com/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" style="height: 24px; width: auto;"/> Git</a>
+
+
+### Hosting
+
+<!--
+- <a href="https://www.cloudflare.com/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cloudflare/cloudflare-original.svg" style="height: 24px; width: auto;"/> Cloudflare</a>
+- <a href="https://github.com/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" style="height: 24px; width: auto;"/> Github</a>
+- <a href="https://neon.com/"><img src="https://neon.com/brand/neon-logomark-light-color.svg" style="height: 24px; width: auto;"/> Neon</a>
+- <a href="https://render.com/"><img src="https://render.com/icon.svg" style="height: 24px; width: auto;"/> Render</a>
+-->
+
+## Dependencies and Credits
+
+### Package Dependencies
+
+- [packageName](https://www.npmjs.com/package/packageName)
+
+### Other Credits
+
+- [Devicion](https://devicon.dev/)
+- [Skillicons](https://skillicons.dev/)
+
+
+## Project Structure
 
 ```bash
-npm run reset-project
+├──.vscode/                # Controller files
+├──app/                    # Compiled queries.js
+├──assets/                 # Generated Prisma files
+├──components/             # Prisma models and migrations
+├──public/                 # Locally hosted images and icons
+├──routes/                 # Router files
+├──src/                    # Source files
+    ├── controllers/       # Request handlers
+    └── server.ts
+└──test/                   # Test files
 ```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
