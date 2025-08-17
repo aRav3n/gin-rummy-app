@@ -11,7 +11,9 @@
 
 ## Description
 
+<!--
 Write a paragraph or two describing the project here.
+-->
 
 ## Installation Instructions
 
@@ -30,16 +32,17 @@ Write a paragraph or two describing the project here.
      npm init -y
      npm install
      ```
-    - ```bash 
-      eas login
-      ```
-1. ```bash  react native
+   - ```bash
+     eas login
+     ```
+1. ```bash react native
    npx expo start
    ```
    - If there are [issues](https://docs.expo.dev/get-started/start-developing/#having-problems) run `npx expo start --tunnel` instead
    - `^` + `c` will end the process
 
 ## Usage and Screenshots
+
 <!--
 <img src="./public/screenshot.png" alt="screenshot" style="height: 50vh; width: auto;">
 
@@ -66,7 +69,6 @@ Here's a brief description of how to use the app.
 - <a href="https://www.npmjs.com/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/npm/npm-original.svg" style="height: 24px; width: auto;"/> NPM</a>
 - <a href="https://git-scm.com/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" style="height: 24px; width: auto;"/> Git</a>
 
-
 ### Hosting
 
 <!--
@@ -80,25 +82,20 @@ Here's a brief description of how to use the app.
 
 ### Package Dependencies
 
+<!--
 - [packageName](https://www.npmjs.com/package/packageName)
+-->
 
 ### Other Credits
 
 - [Devicion](https://devicon.dev/)
 - [Skillicons](https://skillicons.dev/)
 
-
 ## Project Structure
 
 ```bash
-├──.vscode/                # Controller files
-├──app/                    # Compiled queries.js
-├──assets/                 # Generated Prisma files
-├──components/             # Prisma models and migrations
-├──public/                 # Locally hosted images and icons
-├──routes/                 # Router files
-├──src/                    # Source files
-    ├── controllers/       # Request handlers
-    └── server.ts
-└──test/                   # Test files
+├──.vscode/                # settings.json lives here
+├──app/                    # App pages
+├──assets/                 # Fonts and images
+└──components/             # Smaller React components
 ```
