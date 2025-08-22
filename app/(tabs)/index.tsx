@@ -1,7 +1,7 @@
 import {
+  FlatList,
   KeyboardAvoidingView,
   Platform,
-  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -12,23 +12,15 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import colorPalette from "@/assets/styles/colorPalette";
 import { universalStyles } from "@/assets/styles/universalStyles";
+import YellowButton from "@/components/yellowButton";
 
 type gameplayProps = {
   maxScore: string;
   playerOneName: string;
   playerTwoName: string;
   setPlaying: Dispatch<SetStateAction<boolean>>;
-};
-
-type indexProps = {
-  maxScore: string;
-  setMaxScore: Dispatch<SetStateAction<string>>;
-  playerOneName: string;
-  setPlayerOneName: Dispatch<SetStateAction<string>>;
-  playerTwoName: string;
-  setPlayerTwoName: Dispatch<SetStateAction<string>>;
-  playing: boolean;
-  setPlaying: Dispatch<SetStateAction<boolean>>;
+  winnerName: string | null;
+  setWinnerName: Dispatch<SetStateAction<string | null>>;
 };
 
 type setupProps = {
@@ -46,8 +38,91 @@ function GameplayScreen({
   playerOneName,
   playerTwoName,
   setPlaying,
+  winnerName,
+  setWinnerName,
 }: gameplayProps) {
-  return <></>;
+  const [additionalPoints, setAdditionalPoints] = useState<number>(0);
+  const [playerOneScore, setPlayerOneScore] = useState<number>(0);
+  const [playerTwoScore, setPlayerTwoScore] = useState<number>(0);
+  const [scoringPlayer, setScoringPlayer] = useState<number>(0);
+
+  const winningScore = Number(maxScore);
+
+  function checkForWinOrUpdateScore(
+    playerName: string,
+    playerScore: number,
+    setPlayerScore: Dispatch<SetStateAction<number>>
+  ) {
+    const totalPoints = playerScore + additionalPoints;
+    if (totalPoints >= winningScore) {
+      setWinnerName(playerName);
+      return;
+    }
+    setPlayerScore(totalPoints);
+  }
+
+  function onAddPoints() {
+    if (scoringPlayer === 1) {
+      checkForWinOrUpdateScore(
+        playerOneName,
+        playerOneScore,
+        setPlayerOneScore
+      );
+    } else if (scoringPlayer === 2) {
+      checkForWinOrUpdateScore(
+        playerTwoName,
+        playerTwoScore,
+        setPlayerTwoScore
+      );
+    } else {
+      console.error("Wrong player selected");
+    }
+  }
+
+  function onPressOne() {
+    setScoringPlayer(1);
+  }
+
+  function onPressTwo() {
+    setScoringPlayer(2);
+  }
+
+  type playerTileProps = {
+    playerNumber: number;
+  };
+
+  const styles = StyleSheet.create({
+    playerTile: {
+      alignContent: "center",
+      alignItems: "center",
+      flexDirection: "row",
+      gap: 12,
+      justifyContent: "space-between",
+    },
+  });
+
+  function PlayerTile({ playerNumber }: playerTileProps) {
+    const name = playerNumber === 1 ? playerOneName : playerTwoName;
+    const onPress = playerNumber === 1 ? onPressOne : onPressTwo;
+
+    return (
+      <View style={styles.playerTile}>
+        <Text>{name}</Text>
+        <YellowButton onPress={onPress} text="Gin!" />
+      </View>
+    );
+  }
+
+  return (
+    <ScrollView>
+      <PlayerTile playerNumber={1} />
+      <PlayerTile playerNumber={2} />
+      {scoringPlayer > 0 ? <View>
+        <Text>Additional points:</Text>
+        <TextInput keyboardType="numeric"></TextInput>
+      </View> : null}
+    </ScrollView>
+  );
 }
 
 function SetupScreen({
@@ -64,7 +139,6 @@ function SetupScreen({
     useState<boolean>(true);
 
   function checkForErrorFree() {
-    console.log({ playerOneName, playerTwoName, maxScore });
     const maxScoreNumber = Number(maxScore);
     if (playerOneName.length === 0 && playerTwoName.length === 0) {
       setErrorMessage("Both players need names before you can begin!");
@@ -132,31 +206,31 @@ function SetupScreen({
       <ScrollView>
         <View style={styles.container}>
           <Text style={styles.heading}>Who's playing?</Text>
-          <View style={styles.inputContainer}>
+          <View style={universalStyles.inputContainer}>
             <Text>Player One:</Text>
             <TextInput
               accessibilityLabel="player one name"
               onChangeText={setPlayerOneName}
-              style={styles.input}
+              style={universalStyles.input}
               value={playerOneName}
             />
           </View>
-          <View style={styles.inputContainer}>
+          <View style={universalStyles.inputContainer}>
             <Text>Player Two:</Text>
             <TextInput
               accessibilityLabel="player two name"
               onChangeText={setPlayerTwoName}
-              style={styles.input}
+              style={universalStyles.input}
               value={playerTwoName}
             />
           </View>
-          <View style={styles.inputContainer}>
+          <View style={universalStyles.inputContainer}>
             <Text>Winning score:</Text>
             <TextInput
               accessibilityLabel="player one name"
               keyboardType="numeric"
               onChangeText={setMaxScore}
-              style={styles.input}
+              style={universalStyles.input}
               value={maxScore}
             />
           </View>
@@ -165,20 +239,16 @@ function SetupScreen({
       {errorMessage ? (
         <Text style={universalStyles.errorMessage}>{errorMessage}</Text>
       ) : null}
-      <Pressable
-        style={[universalStyles.button, universalStyles.highlight]}
-        onPress={onPress}
-      >
-        <Text style={{ fontWeight: "bold" }}>Let's go!</Text>
-      </Pressable>
+      <YellowButton onPress={onPress} text="Let's go!" />
     </>
   );
 }
 
 export default function Index() {
   const [maxScore, setMaxScore] = useState<string>("100");
-  const [playerOneName, setPlayerOneName] = useState<string>("");
-  const [playerTwoName, setPlayerTwoName] = useState<string>("");
+  // temp names for testing only
+  const [playerOneName, setPlayerOneName] = useState<string>("Player One");
+  const [playerTwoName, setPlayerTwoName] = useState<string>("Player Two");
   const [playing, setPlaying] = useState<boolean>(false);
   const [winnerName, setWinnerName] = useState<string | null>(null);
 
@@ -196,17 +266,6 @@ export default function Index() {
       fontWeight: "bold",
       textAlign: "center",
     },
-    input: {
-      borderColor: colorPalette.dark,
-      borderRadius: 4,
-      borderWidth: 1,
-      padding: 2,
-      width: 200,
-    },
-    inputContainer: {
-      alignItems: "flex-start",
-      gap: 6,
-    },
   });
 
   return (
@@ -220,6 +279,8 @@ export default function Index() {
           playerOneName={playerOneName}
           playerTwoName={playerTwoName}
           setPlaying={setPlaying}
+          winnerName={winnerName}
+          setWinnerName={setWinnerName}
         />
       ) : (
         <SetupScreen

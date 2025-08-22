@@ -24,4 +24,15 @@ export const universalStyles = StyleSheet.create({
   highlight: {
     backgroundColor: colorPalette.highlight,
   },
+  input: {
+    borderColor: colorPalette.dark,
+    borderRadius: 4,
+    borderWidth: 1,
+    padding: 2,
+    width: 200,
+  },
+  inputContainer: {
+    alignItems: "flex-start",
+    gap: 6,
+  },
 });

@@ -1,6 +1,5 @@
 import { Tabs } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useState } from "react";
 
 import colorPalette from "@/assets/styles/colorPalette";
 
