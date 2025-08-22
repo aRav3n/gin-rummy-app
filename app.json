@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "app-gin-rummy",
-    "slug": "app-gin-rummy",
+    "name": "Gin Rummy Score Tracker",
+    "slug": "Gin Rummy Score Tracker",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
