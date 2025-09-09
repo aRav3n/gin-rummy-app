@@ -43,8 +43,8 @@ export const universalStyles = StyleSheet.create({
     gap: 6,
   },
   spreadOutColumn: {
-    alignContent: "stretch",
-    alignItems: "stretch",
+    alignContent: "center",
+    alignItems: "center",
     justifyContent: "space-evenly",
     flexGrow: 1,
   },

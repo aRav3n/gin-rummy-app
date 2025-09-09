@@ -19,7 +19,6 @@ type gameplayProps = {
   playerOneName: string;
   playerTwoName: string;
   setPlaying: Dispatch<SetStateAction<boolean>>;
-  winnerName: string | null;
   setWinnerName: Dispatch<SetStateAction<string | null>>;
 };
 
@@ -33,12 +32,16 @@ type setupProps = {
   setPlaying: Dispatch<SetStateAction<boolean>>;
 };
 
+type winnerProps = {
+  winnerName: string | null;
+  setPlaying: Dispatch<SetStateAction<boolean>>;
+};
+
 function GameplayScreen({
   maxScore,
   playerOneName,
   playerTwoName,
   setPlaying,
-  winnerName,
   setWinnerName,
 }: gameplayProps) {
   const [additionalPoints, setAdditionalPoints] = useState<string>("");
@@ -291,13 +294,37 @@ function SetupScreen({
   );
 }
 
+function WinnerScreen({ winnerName, setPlaying }: winnerProps) {
+  function onPressReset() {
+    setPlaying(false);
+  }
+
+  return (
+    <View style={universalStyles.spreadOutColumn} >
+      <Text style={universalStyles.bannerText} >{`${winnerName} has achieved victory!`}</Text>
+      <YellowButton onPress={onPressReset} text="Play again!"/>
+    </View>
+  );
+}
+
 export default function Index() {
-  const [maxScore, setMaxScore] = useState<string>("100");
   // temp names for testing only
-  const [playerOneName, setPlayerOneName] = useState<string>("Placeholder 1");
-  const [playerTwoName, setPlayerTwoName] = useState<string>("Placeholder 2");
+  const defaultNameOne = "Player 1";
+  const defaultNameTwo = "Player 2";
+
+  const [maxScore, setMaxScore] = useState<string>("100");
+  const [playerOneName, setPlayerOneName] = useState<string>(defaultNameOne);
+  const [playerTwoName, setPlayerTwoName] = useState<string>(defaultNameTwo);
   const [playing, setPlaying] = useState<boolean>(false);
   const [winnerName, setWinnerName] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!playing) {
+      setPlayerOneName(defaultNameOne);
+      setPlayerTwoName(defaultNameTwo);
+      setWinnerName(null);
+    }
+  }, [playing]);
 
   const styles = StyleSheet.create({
     container: {
@@ -321,13 +348,14 @@ export default function Index() {
       style={styles.container}
     >
       {playing ? (
-        winnerName ? null : (
+        winnerName ? (
+          <WinnerScreen winnerName={winnerName} setPlaying={setPlaying} />
+        ) : (
           <GameplayScreen
             maxScore={maxScore}
             playerOneName={playerOneName}
             playerTwoName={playerTwoName}
             setPlaying={setPlaying}
-            winnerName={winnerName}
             setWinnerName={setWinnerName}
           />
         )
