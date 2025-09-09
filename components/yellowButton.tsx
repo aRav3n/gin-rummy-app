@@ -13,7 +13,11 @@ export default function YellowButton({ onPress, text }: Props) {
       style={[universalStyles.button, universalStyles.highlight]}
       onPress={onPress}
     >
-      <Text style={{ fontWeight: "bold" }}>{text}</Text>
+      <Text
+        style={{ alignSelf: "center", fontWeight: "bold", textAlign: "center" }}
+      >
+        {text}
+      </Text>
     </Pressable>
   );
 }

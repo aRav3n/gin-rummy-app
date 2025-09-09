@@ -3,6 +3,11 @@ import { StyleSheet } from "react-native";
 import colorPalette from "./colorPalette";
 
 export const universalStyles = StyleSheet.create({
+  bannerText: {
+    fontSize: 24,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
   button: {
     borderColor: colorPalette.dark,
     borderRadius: 4,
@@ -36,5 +41,11 @@ export const universalStyles = StyleSheet.create({
   inputContainer: {
     alignItems: "flex-start",
     gap: 6,
+  },
+  spreadOutColumn: {
+    alignContent: "stretch",
+    alignItems: "stretch",
+    justifyContent: "space-evenly",
+    flexGrow: 1,
   },
 });

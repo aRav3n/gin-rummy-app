@@ -84,6 +84,10 @@ function GameplayScreen({
     setScoringPlayer(1);
   }
 
+  function onPressReset() {
+    setPlaying(false);
+  }
+
   function onPressTwo() {
     setScoringPlayer(2);
   }
@@ -115,7 +119,7 @@ function GameplayScreen({
       <View style={styles.playerTile}>
         <View style={styles.centeredContainer}>
           <Text>{name}</Text>
-          <Text>{playerScore}</Text>
+          <Text style={{ fontWeight: "bold" }}>{`${playerScore} points`}</Text>
         </View>
         <YellowButton onPress={onPress} text="Gin!" />
       </View>
@@ -123,9 +127,7 @@ function GameplayScreen({
   }
 
   return (
-    <ScrollView>
-      <PlayerTile playerNumber={1} playerScore={playerOneScore} />
-      <PlayerTile playerNumber={2} playerScore={playerTwoScore} />
+    <View style={universalStyles.spreadOutColumn}>
       {scoringPlayer > 0 ? (
         <View
           style={[universalStyles.inputContainer, styles.centeredContainer]}
@@ -146,11 +148,18 @@ function GameplayScreen({
           <YellowButton onPress={onAddPoints} text="Claim my points!" />
         </View>
       ) : (
-        <Text
-          style={{ alignSelf: "center", fontWeight: "bold", marginTop: 50}}
-        >{`Playing to ${maxScore}`}</Text>
+        <>
+          <Text
+            style={universalStyles.bannerText}
+          >{`Playing to ${maxScore}`}</Text>
+        </>
       )}
-    </ScrollView>
+      <View>
+        <PlayerTile playerNumber={1} playerScore={playerOneScore} />
+        <PlayerTile playerNumber={2} playerScore={playerTwoScore} />
+      </View>
+      <YellowButton onPress={onPressReset} text="Reset Game" />
+    </View>
   );
 }
 
