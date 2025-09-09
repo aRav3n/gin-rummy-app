@@ -62,6 +62,7 @@ function GameplayScreen({
   }
 
   function onAddPoints() {
+    console.log(scoringPlayer);
     if (scoringPlayer === 1) {
       checkForWinOrUpdateScore(
         playerOneName,
@@ -89,9 +90,14 @@ function GameplayScreen({
 
   type playerTileProps = {
     playerNumber: number;
+    playerScore: number;
   };
 
   const styles = StyleSheet.create({
+    centeredContainer: {
+      alignContent: "center",
+      alignItems: "center",
+    },
     playerTile: {
       alignContent: "center",
       alignItems: "center",
@@ -101,13 +107,16 @@ function GameplayScreen({
     },
   });
 
-  function PlayerTile({ playerNumber }: playerTileProps) {
+  function PlayerTile({ playerNumber, playerScore }: playerTileProps) {
     const name = playerNumber === 1 ? playerOneName : playerTwoName;
     const onPress = playerNumber === 1 ? onPressOne : onPressTwo;
 
     return (
       <View style={styles.playerTile}>
-        <Text>{name}</Text>
+        <View style={styles.centeredContainer}>
+          <Text>{name}</Text>
+          <Text>{playerScore}</Text>
+        </View>
         <YellowButton onPress={onPress} text="Gin!" />
       </View>
     );
@@ -115,12 +124,32 @@ function GameplayScreen({
 
   return (
     <ScrollView>
-      <PlayerTile playerNumber={1} />
-      <PlayerTile playerNumber={2} />
-      {scoringPlayer > 0 ? <View>
-        <Text>Additional points:</Text>
-        <TextInput keyboardType="numeric"></TextInput>
-      </View> : null}
+      <PlayerTile playerNumber={1} playerScore={playerOneScore} />
+      <PlayerTile playerNumber={2} playerScore={playerTwoScore} />
+      {scoringPlayer > 0 ? (
+        <View
+          style={[universalStyles.inputContainer, styles.centeredContainer]}
+        >
+          <hr style={{ width: 150 }} />
+          <Text style={{ fontWeight: 700 }}>
+            {"Nice job " +
+              (scoringPlayer === 1 ? playerOneName : playerTwoName) +
+              "!"}{" "}
+          </Text>
+          <View style={universalStyles.inputContainer}>
+            <Text>Additional points:</Text>
+            <TextInput
+              keyboardType="numeric"
+              style={universalStyles.input}
+            ></TextInput>
+          </View>
+          <YellowButton onPress={onAddPoints} text="Claim my points!" />
+        </View>
+      ) : (
+        <Text
+          style={{ alignSelf: "center", fontWeight: "bold", marginTop: 50}}
+        >{`Playing to ${maxScore}`}</Text>
+      )}
     </ScrollView>
   );
 }
@@ -247,8 +276,8 @@ function SetupScreen({
 export default function Index() {
   const [maxScore, setMaxScore] = useState<string>("100");
   // temp names for testing only
-  const [playerOneName, setPlayerOneName] = useState<string>("Player One");
-  const [playerTwoName, setPlayerTwoName] = useState<string>("Player Two");
+  const [playerOneName, setPlayerOneName] = useState<string>("Placeholder 1");
+  const [playerTwoName, setPlayerTwoName] = useState<string>("Placeholder 2");
   const [playing, setPlaying] = useState<boolean>(false);
   const [winnerName, setWinnerName] = useState<string | null>(null);
 

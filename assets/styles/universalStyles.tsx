@@ -25,9 +25,11 @@ export const universalStyles = StyleSheet.create({
     backgroundColor: colorPalette.highlight,
   },
   input: {
+    backgroundColor: colorPalette.extraLightGray,
     borderColor: colorPalette.dark,
     borderRadius: 4,
     borderWidth: 1,
+    margin: 3,
     padding: 2,
     width: 200,
   },
