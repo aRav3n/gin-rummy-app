@@ -48,6 +48,7 @@ function GameplayScreen({
 
   useEffect(() => {
     setScoringPlayer(0);
+    setAdditionalPoints("");
   }, [playerOneScore, playerTwoScore]);
 
   const winningScore = Number(maxScore);
@@ -58,7 +59,6 @@ function GameplayScreen({
     setPlayerScore: Dispatch<SetStateAction<number>>
   ) {
     const pointsToAdd = Number(additionalPoints);
-    console.log(pointsToAdd);
 
     const totalPoints = playerScore + 25 + pointsToAdd;
     if (totalPoints >= winningScore) {
@@ -69,8 +69,6 @@ function GameplayScreen({
   }
 
   function onAddPoints() {
-    console.log(scoringPlayer);
-
     if (scoringPlayer === 1) {
       checkForWinOrUpdateScore(
         playerOneName,
@@ -323,14 +321,16 @@ export default function Index() {
       style={styles.container}
     >
       {playing ? (
-        <GameplayScreen
-          maxScore={maxScore}
-          playerOneName={playerOneName}
-          playerTwoName={playerTwoName}
-          setPlaying={setPlaying}
-          winnerName={winnerName}
-          setWinnerName={setWinnerName}
-        />
+        winnerName ? null : (
+          <GameplayScreen
+            maxScore={maxScore}
+            playerOneName={playerOneName}
+            playerTwoName={playerTwoName}
+            setPlaying={setPlaying}
+            winnerName={winnerName}
+            setWinnerName={setWinnerName}
+          />
+        )
       ) : (
         <SetupScreen
           maxScore={maxScore}
