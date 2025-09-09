@@ -41,10 +41,14 @@ function GameplayScreen({
   winnerName,
   setWinnerName,
 }: gameplayProps) {
-  const [additionalPoints, setAdditionalPoints] = useState<number>(0);
+  const [additionalPoints, setAdditionalPoints] = useState<string>("");
   const [playerOneScore, setPlayerOneScore] = useState<number>(0);
   const [playerTwoScore, setPlayerTwoScore] = useState<number>(0);
   const [scoringPlayer, setScoringPlayer] = useState<number>(0);
+
+  useEffect(() => {
+    setScoringPlayer(0);
+  }, [playerOneScore, playerTwoScore]);
 
   const winningScore = Number(maxScore);
 
@@ -53,7 +57,10 @@ function GameplayScreen({
     playerScore: number,
     setPlayerScore: Dispatch<SetStateAction<number>>
   ) {
-    const totalPoints = playerScore + additionalPoints;
+    const pointsToAdd = Number(additionalPoints);
+    console.log(pointsToAdd);
+
+    const totalPoints = playerScore + 25 + pointsToAdd;
     if (totalPoints >= winningScore) {
       setWinnerName(playerName);
       return;
@@ -63,6 +70,7 @@ function GameplayScreen({
 
   function onAddPoints() {
     console.log(scoringPlayer);
+
     if (scoringPlayer === 1) {
       checkForWinOrUpdateScore(
         playerOneName,
@@ -132,18 +140,21 @@ function GameplayScreen({
         <View
           style={[universalStyles.inputContainer, styles.centeredContainer]}
         >
-          <hr style={{ width: 150 }} />
           <Text style={{ fontWeight: 700 }}>
             {"Nice job " +
               (scoringPlayer === 1 ? playerOneName : playerTwoName) +
               "!"}{" "}
           </Text>
           <View style={universalStyles.inputContainer}>
-            <Text>Additional points:</Text>
+            <Text>Deadwood count:</Text>
             <TextInput
               keyboardType="numeric"
+              onChangeText={(text) => {
+                setAdditionalPoints(text);
+              }}
               style={universalStyles.input}
-            ></TextInput>
+              value={additionalPoints}
+            />
           </View>
           <YellowButton onPress={onAddPoints} text="Claim my points!" />
         </View>
