@@ -1,5 +1,4 @@
 import {
-  FlatList,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
@@ -14,10 +13,17 @@ import colorPalette from "@/assets/styles/colorPalette";
 import { universalStyles } from "@/assets/styles/universalStyles";
 import YellowButton from "@/components/yellowButton";
 
+type player = {
+  name: string;
+  score: string;
+};
+
 type gameplayProps = {
   maxScore: string;
-  playerOneName: string;
-  playerTwoName: string;
+  playerOne: player;
+  setPlayerOne: Dispatch<SetStateAction<player>>;
+  playerTwo: player;
+  setPlayerTwo: Dispatch<SetStateAction<player>>;
   setPlaying: Dispatch<SetStateAction<boolean>>;
   setWinnerName: Dispatch<SetStateAction<string | null>>;
 };
@@ -26,9 +32,9 @@ type setupProps = {
   maxScore: string;
   setMaxScore: Dispatch<SetStateAction<string>>;
   playerOneName: string;
-  setPlayerOneName: Dispatch<SetStateAction<string>>;
+  setPlayerOneName: (newName: string) => void;
   playerTwoName: string;
-  setPlayerTwoName: Dispatch<SetStateAction<string>>;
+  setPlayerTwoName: (newName: string) => void;
   setPlaying: Dispatch<SetStateAction<boolean>>;
 };
 
@@ -39,15 +45,34 @@ type winnerProps = {
 
 function GameplayScreen({
   maxScore,
-  playerOneName,
-  playerTwoName,
+  playerOne,
+  setPlayerOne,
+  playerTwo,
+  setPlayerTwo,
   setPlaying,
   setWinnerName,
 }: gameplayProps) {
   const [additionalPoints, setAdditionalPoints] = useState<string>("");
-  const [playerOneScore, setPlayerOneScore] = useState<number>(0);
-  const [playerTwoScore, setPlayerTwoScore] = useState<number>(0);
   const [scoringPlayer, setScoringPlayer] = useState<number>(0);
+
+  function setPlayerScore(
+    player: player,
+    setPlayer: Dispatch<SetStateAction<player>>,
+    newScore: string
+  ) {
+    const newPlayerObject = {
+      name: player.name,
+      score: newScore,
+    };
+
+    setPlayer(newPlayerObject);
+  }
+  function setPlayerOneScore(newScore: string) {
+    setPlayerScore(playerOne, setPlayerOne, newScore);
+  }
+  function setPlayerTwoScore(newScore: string) {
+    setPlayerScore(playerTwo, setPlayerTwo, newScore);
+  }
 
   useEffect(() => {
     setScoringPlayer(0);
@@ -300,28 +325,50 @@ function WinnerScreen({ winnerName, setPlaying }: winnerProps) {
   }
 
   return (
-    <View style={universalStyles.spreadOutColumn} >
-      <Text style={universalStyles.bannerText} >{`${winnerName} has achieved victory!`}</Text>
-      <YellowButton onPress={onPressReset} text="Play again!"/>
+    <View style={universalStyles.spreadOutColumn}>
+      <Text style={universalStyles.bannerText}>{`${winnerName} won!`}</Text>
+      <YellowButton onPress={onPressReset} text="Play again!" />
     </View>
   );
 }
 
 export default function Index() {
-  // temp names for testing only
-  const defaultNameOne = "Player 1";
-  const defaultNameTwo = "Player 2";
+  const blankPlayerObject = () => {
+    return {
+      name: "",
+      score: "",
+    };
+  };
 
   const [maxScore, setMaxScore] = useState<string>("100");
-  const [playerOneName, setPlayerOneName] = useState<string>(defaultNameOne);
-  const [playerTwoName, setPlayerTwoName] = useState<string>(defaultNameTwo);
+  const [playerOne, setPlayerOne] = useState<player>(blankPlayerObject());
+  const [playerTwo, setPlayerTwo] = useState<player>(blankPlayerObject());
   const [playing, setPlaying] = useState<boolean>(false);
   const [winnerName, setWinnerName] = useState<string | null>(null);
 
+  function setPlayerName(
+    player: player,
+    setPlayer: Dispatch<SetStateAction<player>>,
+    newName: string
+  ) {
+    const newPlayerObject = {
+      name: newName,
+      score: player.score,
+    };
+
+    setPlayer(newPlayerObject);
+  }
+  function setPlayerOneName(newName: string) {
+    setPlayerName(playerOne, setPlayerOne, newName);
+  }
+  function setPlayerTwoName(newName: string) {
+    setPlayerName(playerTwo, setPlayerTwo, newName);
+  }
+
   useEffect(() => {
     if (!playing) {
-      setPlayerOneName(defaultNameOne);
-      setPlayerTwoName(defaultNameTwo);
+      setPlayerOne(blankPlayerObject());
+      setPlayerTwo(blankPlayerObject());
       setWinnerName(null);
     }
   }, [playing]);
@@ -353,8 +400,10 @@ export default function Index() {
         ) : (
           <GameplayScreen
             maxScore={maxScore}
-            playerOneName={playerOneName}
-            playerTwoName={playerTwoName}
+            playerOne={playerOne}
+            setPlayerOne={setPlayerOne}
+            playerTwo={playerTwo}
+            setPlayerTwo={setPlayerTwo}
             setPlaying={setPlaying}
             setWinnerName={setWinnerName}
           />
@@ -363,9 +412,9 @@ export default function Index() {
         <SetupScreen
           maxScore={maxScore}
           setMaxScore={setMaxScore}
-          playerOneName={playerOneName}
+          playerOneName={playerOne.name}
           setPlayerOneName={setPlayerOneName}
-          playerTwoName={playerTwoName}
+          playerTwoName={playerTwo.name}
           setPlayerTwoName={setPlayerTwoName}
           setPlaying={setPlaying}
         />

@@ -11,9 +11,7 @@
 
 ## Description
 
-<!--
-Write a paragraph or two describing the project here.
--->
+This is my first app built with React Native. It is a simple score tracker for Gin Rummy.
 
 ## Installation Instructions
 
