@@ -61,13 +61,11 @@ function GameplayScreen({
     setPlayer: Dispatch<SetStateAction<player>>,
     newScore: Number
   ) {
-    console.log({ playerOne, playerTwo });
     const newPlayerObject = {
       number: player.number,
       name: player.name,
       score: newScore.toString(),
     };
-    console.log({ newPlayerObject });
 
     setPlayer(newPlayerObject);
   }
