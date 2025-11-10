@@ -14,6 +14,7 @@ import { universalStyles } from "@/assets/styles/universalStyles";
 import YellowButton from "@/components/yellowButton";
 
 type player = {
+  number: Number;
   name: string;
   score: string;
 };
@@ -58,57 +59,51 @@ function GameplayScreen({
   function setPlayerScore(
     player: player,
     setPlayer: Dispatch<SetStateAction<player>>,
-    newScore: string
+    newScore: Number
   ) {
+    console.log({ playerOne, playerTwo });
     const newPlayerObject = {
+      number: player.number,
       name: player.name,
-      score: newScore,
+      score: newScore.toString(),
     };
+    console.log({ newPlayerObject });
 
     setPlayer(newPlayerObject);
   }
-  function setPlayerOneScore(newScore: string) {
+  function setPlayerOneScore(newScore: Number) {
     setPlayerScore(playerOne, setPlayerOne, newScore);
   }
-  function setPlayerTwoScore(newScore: string) {
+  function setPlayerTwoScore(newScore: Number) {
     setPlayerScore(playerTwo, setPlayerTwo, newScore);
   }
 
   useEffect(() => {
     setScoringPlayer(0);
     setAdditionalPoints("");
-  }, [playerOneScore, playerTwoScore]);
+  }, [playerOne.score, playerTwo.score]);
 
   const winningScore = Number(maxScore);
 
   function checkForWinOrUpdateScore(
-    playerName: string,
-    playerScore: number,
-    setPlayerScore: Dispatch<SetStateAction<number>>
+    player: player,
+    updatePlayerScore: (newScore: Number) => void
   ) {
     const pointsToAdd = Number(additionalPoints);
 
-    const totalPoints = playerScore + 25 + pointsToAdd;
+    const totalPoints = Number(player.score) + 25 + pointsToAdd;
     if (totalPoints >= winningScore) {
-      setWinnerName(playerName);
+      setWinnerName(player.name);
       return;
     }
-    setPlayerScore(totalPoints);
+    updatePlayerScore(totalPoints);
   }
 
   function onAddPoints() {
     if (scoringPlayer === 1) {
-      checkForWinOrUpdateScore(
-        playerOneName,
-        playerOneScore,
-        setPlayerOneScore
-      );
+      checkForWinOrUpdateScore(playerOne, setPlayerOneScore);
     } else if (scoringPlayer === 2) {
-      checkForWinOrUpdateScore(
-        playerTwoName,
-        playerTwoScore,
-        setPlayerTwoScore
-      );
+      checkForWinOrUpdateScore(playerTwo, setPlayerTwoScore);
     } else {
       console.error("Wrong player selected");
     }
@@ -127,8 +122,7 @@ function GameplayScreen({
   }
 
   type playerTileProps = {
-    playerNumber: number;
-    playerScore: number;
+    player: player;
   };
 
   const styles = StyleSheet.create({
@@ -145,15 +139,15 @@ function GameplayScreen({
     },
   });
 
-  function PlayerTile({ playerNumber, playerScore }: playerTileProps) {
-    const name = playerNumber === 1 ? playerOneName : playerTwoName;
-    const onPress = playerNumber === 1 ? onPressOne : onPressTwo;
+  function PlayerTile({ player }: playerTileProps) {
+    const name = player.name;
+    const onPress = player.number === 1 ? onPressOne : onPressTwo;
 
     return (
       <View style={styles.playerTile}>
         <View style={styles.centeredContainer}>
           <Text>{name}</Text>
-          <Text style={{ fontWeight: "bold" }}>{`${playerScore} points`}</Text>
+          <Text style={{ fontWeight: "bold" }}>{`${player.score} points`}</Text>
         </View>
         <YellowButton onPress={onPress} text="Gin!" />
       </View>
@@ -168,7 +162,7 @@ function GameplayScreen({
         >
           <Text style={{ fontWeight: 700 }}>
             {"Nice job " +
-              (scoringPlayer === 1 ? playerOneName : playerTwoName) +
+              (scoringPlayer === 1 ? playerOne.name : playerTwo.name) +
               "!"}{" "}
           </Text>
           <View style={universalStyles.inputContainer}>
@@ -192,8 +186,8 @@ function GameplayScreen({
         </>
       )}
       <View>
-        <PlayerTile playerNumber={1} playerScore={playerOneScore} />
-        <PlayerTile playerNumber={2} playerScore={playerTwoScore} />
+        <PlayerTile player={playerOne} />
+        <PlayerTile player={playerTwo} />
       </View>
       <YellowButton onPress={onPressReset} text="Reset Game" />
     </View>
@@ -333,36 +327,39 @@ function WinnerScreen({ winnerName, setPlaying }: winnerProps) {
 }
 
 export default function Index() {
-  const blankPlayerObject = () => {
-    return {
+  const blankPlayerObject = (playerNumber: Number) => {
+    const playerObject = {
+      number: playerNumber,
       name: "",
       score: "",
     };
+
+    return playerObject;
   };
 
   const [maxScore, setMaxScore] = useState<string>("100");
-  const [playerOne, setPlayerOne] = useState<player>(blankPlayerObject());
-  const [playerTwo, setPlayerTwo] = useState<player>(blankPlayerObject());
+  const [playerOne, setPlayerOne] = useState<player>(blankPlayerObject(1));
+  const [playerTwo, setPlayerTwo] = useState<player>(blankPlayerObject(2));
   const [playing, setPlaying] = useState<boolean>(false);
   const [winnerName, setWinnerName] = useState<string | null>(null);
 
   function setPlayerName(
     player: player,
     setPlayer: Dispatch<SetStateAction<player>>,
-    newName: string
+    newName: string,
+    playerNumber: Number
   ) {
-    const newPlayerObject = {
-      name: newName,
-      score: player.score,
-    };
+    let newPlayerObject = { ...player };
+    newPlayerObject.name = newName;
+    newPlayerObject.number = playerNumber;
 
     setPlayer(newPlayerObject);
   }
   function setPlayerOneName(newName: string) {
-    setPlayerName(playerOne, setPlayerOne, newName);
+    setPlayerName(playerOne, setPlayerOne, newName, 1);
   }
   function setPlayerTwoName(newName: string) {
-    setPlayerName(playerTwo, setPlayerTwo, newName);
+    setPlayerName(playerTwo, setPlayerTwo, newName, 2);
   }
 
   useEffect(() => {
