@@ -3,15 +3,36 @@
 ## Table of Contents
 
 - [Description](#description)
-- [Installation Instructions](#installation-instructions)
-- [Usage and Screenshots](#usage-and-screenshots)
-- [Technologies Used](#technologies-used)
-- [Dependencies and Credits](#dependencies-and-credits)
-- [Project Structure](#project-structure)
+- **For End Users**
+   - [Where to Download the App](#where-to-download-the-app)
+   - [Usage and Screenshots](#usage-and-screenshots)
+- **For Developers**
+   - [Installation Instructions](#installation-instructions)
+   - [Technologies Used](#technologies-used)
+   - [Dependencies and Credits](#dependencies-and-credits)
+   - [Project Structure](#project-structure)
 
 ## Description
 
 This is my first app built with React Native. It is a simple score tracker for Gin Rummy.
+
+## Where to Download the App
+
+
+## Usage and Screenshots
+
+<!--
+<img src="./public/screenshot.png" alt="screenshot" style="height: 50vh; width: auto;">
+
+Here's a brief description of how to use the app.
+
+- [Link to live preview](https://groundedwanderer.dev/)
+- [Link to backend repo](https://github.com/aRav3n/odin-book-backend)
+
+### Features
+- Feature one
+- Feature two
+-->
 
 ## Installation Instructions
 
@@ -38,21 +59,6 @@ This is my first app built with React Native. It is a simple score tracker for G
    ```
    - If there are [issues](https://docs.expo.dev/get-started/start-developing/#having-problems) run `npx expo start --tunnel` instead
    - `^` + `c` will end the process
-
-## Usage and Screenshots
-
-<!--
-<img src="./public/screenshot.png" alt="screenshot" style="height: 50vh; width: auto;">
-
-Here's a brief description of how to use the app.
-
-- [Link to live preview](https://groundedwanderer.dev/)
-- [Link to backend repo](https://github.com/aRav3n/odin-book-backend)
-
-### Features
-- Feature one
-- Feature two
--->
 
 ## Technologies Used
 
