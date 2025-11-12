@@ -10,7 +10,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.grounded.wanderer.gin-rummy-score-tracker",
+      "bundleIdentifier": "com.groundedwanderer.ginrummy",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
@@ -21,7 +21,7 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.grounded.wanderer.Gin_Rummy_Score_Tracker"
+      "package": "com.groundedwanderer.ginrummy"
     },
     "web": {
       "bundler": "metro",
