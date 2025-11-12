@@ -18,6 +18,23 @@ This is my first app built with React Native. It is a simple score tracker for G
 
 ## Where to Download the App
 
+### Android
+
+<!-- 
+******** Add link ************
+<a href="https://play.google.com/store/games"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" style="height: 48px; width: auto;"/></a> 
+
+*******     Need to get link to badge per: https://f-droid.org/docs/Badges/     ******
+<a href="https://f-droid.org/packages/"><img src="" style="height: 48px; width: auto;"/></a>
+
+******** Add link ************
+<a href="LINK_FOR_OBTANIUM_CONFIG"><img src="https://raw.githubusercontent.com/ImranR98/Obtainium/refs/heads/main/assets/graphics/badge_obtainium.png" style="height: 48px; width: auto;"/></a>
+
+### iOS 
+
+******** Add link ************
+<a href="https://apps.apple.com/"><img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" style="height: 48px; width: auto;"/></a>
+-->
 
 ## Usage and Screenshots
 
