@@ -124,9 +124,20 @@ function GameplayScreen({
   };
 
   const styles = StyleSheet.create({
+    boldText: {
+      fontWeight: "bold",
+    },
     centeredContainer: {
       alignContent: "center",
       alignItems: "center",
+      flexGrow: 1,
+      justifyContent: "center",
+    },
+    centeredText: {
+      alignSelf: "center",
+      display: "flex",
+      textAlign: "center",
+      width: "auto",
     },
     playerTile: {
       alignContent: "center",
@@ -144,8 +155,10 @@ function GameplayScreen({
     return (
       <View style={styles.playerTile}>
         <View style={styles.centeredContainer}>
-          <Text>{name}</Text>
-          <Text style={{ fontWeight: "bold" }}>{`${player.score} points`}</Text>
+          <Text style={styles.centeredText}>{name}</Text>
+          <Text
+            style={[styles.boldText, styles.centeredText]}
+          >{`${player.score} points`}</Text>
         </View>
         <YellowButton onPress={onPress} text="Gin!" />
       </View>
@@ -362,8 +375,8 @@ export default function Index() {
 
   useEffect(() => {
     if (!playing) {
-      setPlayerOne(blankPlayerObject());
-      setPlayerTwo(blankPlayerObject());
+      setPlayerOne(blankPlayerObject(1));
+      setPlayerTwo(blankPlayerObject(0));
       setWinnerName(null);
     }
   }, [playing]);
