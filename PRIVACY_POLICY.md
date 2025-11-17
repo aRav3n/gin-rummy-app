@@ -1,6 +1,6 @@
 ## Gin Rummy Score Tracker: Privacy policy
 
-Welcome to the Gin Rummy Score Tracker app for Android and iOS!
+Welcome to the Gin Rummy Score Tracker app for Android<!-- and iOS-->!
 
 This is an open source app developed by Andy Ryan. The source code is available on GitHub under the MIT license.
 
