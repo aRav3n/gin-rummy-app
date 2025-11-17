@@ -14,7 +14,7 @@
 
 ## Description
 
-This is my first app built with React Native. It is a simple score tracker for Gin Rummy.
+This app is a simple score tracker that allows two players to keep track of their scores for a game of gin rummy. If you have improvement suggestions please send them to me at grounded.wanderer@proton.me
 
 ## Where to Download the App
 
