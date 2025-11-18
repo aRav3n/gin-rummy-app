@@ -342,7 +342,7 @@ export default function Index() {
     const playerObject = {
       number: playerNumber,
       name: "",
-      score: "",
+      score: "0",
     };
 
     return playerObject;
