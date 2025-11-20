@@ -30,18 +30,19 @@ This app is a simple score tracker that allows two players to keep track of thei
 
 ## Usage and Screenshots
 
-<!--
-<img src="./public/screenshot.png" alt="screenshot" style="height: 50vh; width: auto;">
+<div>
+<img src="./assets/images/screenshots/Android/phone/start.jpg" alt="screenshot of the startup screen" style="height: 50vh; width: auto;">
+<img src="./assets/images/screenshots/Android/phone/gameplay.jpg" alt="screenshot of gameplay" style="height: 50vh; width: auto;">
+<img src="./assets/images/screenshots/Android/phone/getting_points.jpg" alt="screenshot of a player getting poiints" style="height: 50vh; width: auto;">
+<img src="./assets/images/screenshots/Android/phone/victory.jpg" alt="screenshot of the victory screen" style="height: 50vh; width: auto;">
+</div>
 
-Here's a brief description of how to use the app.
-
-- [Link to live preview](https://groundedwanderer.dev/)
-- [Link to backend repo](https://github.com/aRav3n/odin-book-backend)
-
-### Features
-- Feature one
-- Feature two
--->
+1. After opening the app you can enter the names of the players and, if you'd like, adjust the score that you are playing to.
+2. Click **Let's go!**
+3. Once a player gets a gin, click **Gin!** next to their name
+4. If the player scored any additional deadwood points from their oponent's hand enter those in *Deadwood count:* then click **Claim my points!**
+5. At the end of the game the winning player's name will be displayed
+6. You may now exit the app or click **Play again!** to be taken back to the start screen
 
 ## Installation Instructions
 
@@ -71,7 +72,7 @@ Here's a brief description of how to use the app.
 
 ## Technologies Used
 
-- <a href="https://expo.dev"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/expo/expo-original.svg" style="height: 2rem; width: auto; vertical-align: middle;"> Expo </a>
+- <a href="https://expo.dev"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/expo/expo-original.svg" style="height: 2rem; width: auto; vertical-align: middle;"> Expo</a>
 - <a href="https://reactnative.dev/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" style="height: 2rem; width: auto;"> React Native</a>
 - <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" style="height: 2rem; width: auto;"> JavaScript</a>
 - <a href="https://www.typescriptlang.org/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" style="height: 2rem; width: auto;"/> TypeScript</a>
@@ -84,20 +85,45 @@ Here's a brief description of how to use the app.
 
 ### Hosting
 
-<!--
-- <a href="https://www.cloudflare.com/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cloudflare/cloudflare-original.svg" style="height: 24px; width: auto;"/> Cloudflare</a>
-- <a href="https://github.com/"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" style="height: 24px; width: auto;"/> Github</a>
-- <a href="https://neon.com/"><img src="https://neon.com/brand/neon-logomark-light-color.svg" style="height: 24px; width: auto;"/> Neon</a>
-- <a href="https://render.com/"><img src="https://render.com/icon.svg" style="height: 24px; width: auto;"/> Render</a>
--->
+- <a href="https://github.com/aRav3n/gin-rummy-app"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" style="height: 24px; width: auto;"/> Github</a>
 
 ## Dependencies and Credits
 
 ### Package Dependencies
 
-<!--
-- [packageName](https://www.npmjs.com/package/packageName)
--->
+- [@expo/vector-icons](https://www.npmjs.com/package/@expo/vector-icons)
+- [@react-navigation/bottom-tabs](https://www.npmjs.com/package/@react-navigation/bottom-tabs)
+- [@react-navigation/elements](https://www.npmjs.com/package/@react-navigation/elements)
+- [@react-navigation/native](https://www.npmjs.com/package/@react-navigation/native)
+- [expo](https://www.npmjs.com/package/expo)
+- [expo-blur](https://www.npmjs.com/package/expo-blur)
+- [expo-constants](https://www.npmjs.com/package/expo-constants)
+- [expo-dev-client](https://www.npmjs.com/package/expo-dev-client)
+- [expo-font](https://www.npmjs.com/package/expo-font)
+- [expo-haptics](https://www.npmjs.com/package/expo-haptics)
+- [expo-image](https://www.npmjs.com/package/expo-image)
+- [expo-linking](https://www.npmjs.com/package/expo-linking)
+- [expo-router](https://www.npmjs.com/package/expo-router)
+- [expo-splash-screen](https://www.npmjs.com/package/expo-splash-screen)
+- [expo-status-bar](https://www.npmjs.com/package/expo-status-bar)
+- [expo-symbols](https://www.npmjs.com/package/expo-symbols)
+- [expo-system-ui](https://www.npmjs.com/package/expo-system-ui)
+- [expo-web-browser](https://www.npmjs.com/package/expo-web-browser)
+- [react](https://www.npmjs.com/package/react)
+- [react-dom](https://www.npmjs.com/package/react-dom)
+- [react-native](https://www.npmjs.com/package/react-native)
+- [react-native-gesture-handler](https://www.npmjs.com/package/react-native-gesture-handler)
+- [react-native-reanimated](https://www.npmjs.com/package/react-native-reanimated)
+- [react-native-safe-area-context](https://www.npmjs.com/package/react-native-safe-area-context)
+- [react-native-screens](https://www.npmjs.com/package/react-native-screens)
+- [react-native-web](https://www.npmjs.com/package/react-native-web)
+- [react-native-webview](https://www.npmjs.com/package/react-native-webview)
+- [react-native-worklets](https://www.npmjs.com/package/react-native-worklets)
+- [@babel/core](https://www.npmjs.com/package/@babel/core)
+- [@types/react](https://www.npmjs.com/package/@types/react)
+- [eslint](https://www.npmjs.com/package/eslint)
+- [eslint-config-expo](https://www.npmjs.com/package/eslint-config-expo)
+- [typescript](https://www.npmjs.com/package/typescript)
 
 ### Other Credits
 
@@ -107,8 +133,60 @@ Here's a brief description of how to use the app.
 ## Project Structure
 
 ```bash
-├──.vscode/                # settings.json lives here
-├──app/                    # App pages
-├──assets/                 # Fonts and images
-└──components/             # Smaller React components
+├──.vscode/                           # settings.json lives here
+├──app/                               # App pages
+   ├──(tabs)/                         # Different app screens
+      ├──_layout.tsx
+      ├──about.tsx
+      └──index.tsx
+   ├──_layout.tsx
+   └──+not-found.tsx
+├──assets/                            # Fonts and images
+   ├──fonts/                          # Fonts
+      └──SpaceMono-Regular.ttf
+   ├──images/                         # Image assets such as icons
+      ├──screenshots/                 # Screenshots
+         ├──Android/                  # Android screenshots
+            ├──phone/                 # Phone screenshots
+               ├──gameplay.jpg
+               ├──getting_points.jpg
+               ├──start.jpg
+               └──victory.jpg
+            ├──tablet_7/              # 7 inch tablet screenshots
+               ├──gameplay.jpg
+               ├──getting_points.jpg
+               ├──start.jpg
+               └──victory.jpg
+            └──tablet_10/             # 10 inch tablet screenshots
+               ├──gameplay.jpg
+               ├──getting_points.jpg
+               ├──start.jpg
+               └──victory.jpg
+         └──iPhone/                   # iPhone screenshots
+            ├──gameplay.png
+            ├──getting_points.png
+            ├──start.png
+            └──victory.png
+      ├──adaptive-icon.png
+      ├──favicon.png
+      ├──favicon.xcf
+      ├──feature_graphic.png
+      ├──icon.png
+      ├──icon.xcf
+      ├──play_store-icon.png
+      ├──splash-icon.png
+      └──splash-icon.xcf
+   └──styles/                    # Different app screens
+├──components/                   # Smaller React components
+   └──yellowButton.tsx
+├──app.json
+├──eas.json
+├──eslint.config.js
+├──expo-env.d.ts
+├──LICENSE
+├──package-lock.json
+├──package.json
+├──PRIVACY_POLICY.md
+├──README.md
+└──tsconfig.json
 ```
