@@ -1,4 +1,4 @@
-# App Name
+# Simple Gin Rummy Score Tracker
 
 ## Table of Contents
 
