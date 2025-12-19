@@ -18,6 +18,10 @@ This app is a simple score tracker that allows two players to keep track of thei
 
 ## Where to Download the App
 
+[Use it on the web](https://gin-rummy-score-tracker.expo.app/)
+
+Or
+
 <!-- 
 ******** Add link ************
 <a href="https://play.google.com/store/games"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" style="height: 48px; width: auto;"/></a> 
