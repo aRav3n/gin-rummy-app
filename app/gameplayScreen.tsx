@@ -146,6 +146,7 @@ export default function GameplayScreen({
               }}
               style={universalStyles.input}
               value={additionalPoints}
+              placeholder="0"
             />
           </View>
           <YellowButton onPress={onAddPoints} text="Claim my points!" />
