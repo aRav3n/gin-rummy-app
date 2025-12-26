@@ -12,37 +12,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import colorPalette from "@/assets/styles/colorPalette";
 import { universalStyles } from "@/assets/styles/universalStyles";
 import YellowButton from "@/components/yellowButton";
-
-type player = {
-  number: Number;
-  name: string;
-  score: string;
-};
-
-type gameplayProps = {
-  maxScore: string;
-  playerOne: player;
-  setPlayerOne: Dispatch<SetStateAction<player>>;
-  playerTwo: player;
-  setPlayerTwo: Dispatch<SetStateAction<player>>;
-  setPlaying: Dispatch<SetStateAction<boolean>>;
-  setWinnerName: Dispatch<SetStateAction<string | null>>;
-};
-
-type setupProps = {
-  maxScore: string;
-  setMaxScore: Dispatch<SetStateAction<string>>;
-  playerOneName: string;
-  setPlayerOneName: (newName: string) => void;
-  playerTwoName: string;
-  setPlayerTwoName: (newName: string) => void;
-  setPlaying: Dispatch<SetStateAction<boolean>>;
-};
-
-type winnerProps = {
-  winnerName: string | null;
-  setPlaying: Dispatch<SetStateAction<boolean>>;
-};
+import { gameplayProps, player, setupProps, winnerProps } from "@/assets/types";
 
 function GameplayScreen({
   maxScore,
